@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!--
+  Chrome History Deleter Extension
+  (c) 2025 delucasso - https://x.com/DeLucasso
+  Licensed under MIT License
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      width: 350px;
+      min-height: 400px;
+      max-height: 600px;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto;
+    }
+    
+    .container {
+      padding: 15px;
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    .button-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      min-width: 80px;
+    }
+    
+    .primary {
+      background-color: #4285f4;
+      color: white;
+    }
+    
+    .secondary {
+      background-color: #f1f3f4;
+      color: #202124;
+    }
+    
+    .danger {
+      background-color: #ea4335;
+      color: white;
+    }
+    
+    .section {
+      margin-bottom: 20px;
+    }
+    
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    #trashList {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 5px;
+      min-height: 40px;
+    }
+    
+    .domain-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .domain-item:last-child {
+      border-bottom: none;
+    }
+    
+    .trash-all-btn {
+      width: 100%;
+    }
+    
+    #log {
+      margin-top: 15px;
+      max-height: 250px;
+      overflow-y: auto;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 10px;
+      font-size: 0.9rem;
+      min-height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <h1 style="margin: 0;">History Deleter</h1>
+        <span id="helpIcon" style="cursor: pointer; background-color: #4285f4; color: white; border-radius: 50%; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold;">?</span>
+      </div>
+      <div style="text-align: right;">
+        <a href="https://x.com/DeLucasso" target="_blank" style="font-size: 0.8rem; color: #666; text-decoration: none;">(c) 2025 delucasso</a>
+        <div style="font-size: 0.7rem; color: #999;">v1.0.0</div>
+      </div>
+    </div>
+    
+    <!-- Help tooltip (initially hidden) -->
+    <div id="helpTooltip" style="display: none; background-color: #f8f9fa; border: 1px solid #dadce0; border-radius: 4px; padding: 10px; margin-bottom: 15px; font-size: 0.9rem;">
+      <strong>Chrome History Deleter</strong><br>
+      • Search and delete browser history by domain or keyword<br>
+      • Add domains to a trash list for bulk deletion<br>
+      • Find feature shows URLs before deletion<br>
+      • Deletes history in batches of 100 until all matches are removed
+    </div>
+    
+    <!-- Manual search and delete section -->
+    <div class="section">
+      <div class="section-title">Search & Delete</div>
+      <input type="text" placeholder="Enter domain or keyword..." id="query" />
+      <div class="button-row">
+        <button id="btnFind" class="secondary">Find</button>
+        <button id="btnClear" class="danger">Delete</button>
+      </div>
+    </div>
+    
+    <!-- Domain Trash List section -->
+    <div class="section">
+      <div class="section-title">Domain Trash List</div>
+      <div class="button-row">
+        <input type="text" placeholder="Add domain to list..." id="domainInput" style="margin-bottom: 0;" />
+        <button id="btnAddDomain" class="primary">Add</button>
+      </div>
+      <div id="trashList">
+        <!-- Domains will be added here -->
+      </div>
+      <button id="btnTrashListed" class="danger trash-all-btn">TRASH LISTED DOMAINS</button>
+    </div>
+    
+    <!-- Results log section -->
+    <div id="log"></div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

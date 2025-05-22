@@ -1,0 +1,40 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Screenshots (except official ones)
+Screenshot*.png
+!Screenshot1.png
+
+# Development files
+CLAUDE.md
+
+# Chrome extension development
+*.crx
+*.pem
+key.pem
+
+# Logs
+*.log
+npm-debug.log*
+
+# Archive files
+*.zip
+*.rar
+*.tar.gz
