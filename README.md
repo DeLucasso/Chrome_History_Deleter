@@ -15,6 +15,13 @@ A simple and powerful Chrome extension that allows you to delete browser history
 ### From Chrome Web Store
 *Coming soon - extension is pending review*
 
+### Install from ZIP File
+1. **Extract ZIP** to a folder on your computer
+2. Open Chrome → **Menu (⋮)** → **Extensions** → **Manage Extensions**
+3. Enable **Developer mode** (toggle top-right)
+4. Click **Load unpacked**
+5. Select the **extracted folder**
+
 ### Manual Installation (Developer Mode)
 1. Download or clone this repository
 2. Open Chrome and navigate to `chrome://extensions/`
